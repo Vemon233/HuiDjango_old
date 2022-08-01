@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block title_block %}
+    Monkeypox-for test
+{% endblock %}
+
+{% block head_block %}
+    <script type="text/javascript" src="https://assets.pyecharts.org/assets/echarts.min.js"></script>
+    <script type="text/javascript" src="https://assets.pyecharts.org/assets/maps/world.js"></script>
+{% endblock %}
+
+{% block body_block %}
+    <div class="p-3 bg-dark"></div>
+    <!--The first part of pathogen-page, the title-->
+    <section class="pt-4 bg-secondary bg-opacity-75 text-light text-center text-sm-start">
+        <div class="container">
+            <div class="d-flex">
+                <div class="card mx-auto" style="width: 1300px;">
+                    <div class="card-header pt-3 d-flex flex-row align-items-center justify-content-between">
+                        <div><h1><span class="text-dark">Monkeypox-test</span></h1></div>
+                        <div class="ms-auto mt-auto"><h4><span class="text-danger">Danger lever: high</span></h4></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!--The second part of pathogen-page, the smoothed line chart-->
+    <section class="bg-secondary bg-opacity-75 p-3">
+        <div class="card mx-auto" style="width: 1300px;">
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
+            </div>
+            <div class="card-body">
+                <div id="4b281ea424cc4bb28da080d3b1171401" class="chart-container mx-auto"
+                     style="width:1200px; height:400px;"></div>
+                <script type="text/javascript" src="/static/js/chart1-test.js"></script>
+            </div>
+        </div>
+    </section>
+
+    <!--The third part of pathogen-page-->
+    <section class="bg-secondary bg-opacity-75">
+        <div class="container mx-auto">
+            <div class="row">
+                <!-- World Map -->
+                <div class="col-xl-7">
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                            <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
+                        </div>
+                        <div class="card-body">
+                            <div id="b60e6fbc5bd64263bb98a7cd90abbb9b" class="chart-container mx-auto"
+                                 style="width:600px; height:300px;"></div>
+                            <script type="text/javascript" src="/static/js/chart2-test.js"></script>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pie Chart -->
+                <div class="col-xl-5">
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                            <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
+                        </div>
+                        <div class="card-body">
+                            <div id="76d45e639ae04ff9827b2de95e79a124" class="chart-container"
+                                 style="width:500px; height:300px;"></div>
+                            <script type="text/javascript" src="/static/js/chart3-test.js"></script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+{% endblock %}
