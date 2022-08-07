@@ -65,3 +65,5 @@ for file in files:
     except pymysql.Error as e:
         print(di_id + "数据插入失败：" + e)
         conn.rollback()
+
+driver.quit()
