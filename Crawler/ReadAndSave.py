@@ -12,6 +12,21 @@ conn = pymysql.connect(
 )
 cur = conn.cursor()
 
+# Create the database
+cur.execute("drop database if exists diseasedb")
+cur.execute("create database diseasedb default charset utf8 collate utf8_general_ci")
+cur.execute("use diseasedb")
+sql = '''
+create table disease(
+    id char(7) not null primary key,
+    name varchar(40) NOT NULL,
+    date DATE,
+    country varchar(20),
+    cases INT DEFAULT 1,
+    class varchar(12)
+)
+'''
+cur.execute(sql)
 
 def clean_suffix(text, suffix):
     pos = text.find(suffix)
@@ -58,6 +73,9 @@ for file in files:
     di_name = clean_suffix(di_name, ',')
     if di_name.endswith(' '):
         di_name = di_name.strip()
+
+    if len(di_name) > 40:
+        di_name = di_name[0:40]
     di_list.append(di_name)
 
     # step 3 Get the class of disease
@@ -121,26 +139,25 @@ for file in files:
         di_country = clean_suffix(di_country, ' (')
         di_country = clean_suffix(di_country, ':')
         di_country = clean_suffix(di_country, ',')
-
+    if len(di_country) > 20:
+        di_country = ''
     di_list.append(di_country)
     print(di_list)
+    # Save into the database
 
-    # step 5 Get the cases of the disease
+
+    sqlQuery = " INSERT INTO disease (id, name, class, country) VALUE (%s,%s,%s,%s) "
+    try:
+        cur.execute(sqlQuery, di_list)
+        conn.commit()
+        print(di_id + 'Data insert successfully')
+    except pymysql.Error as e:
+        print(di_id + "Data insert failed："+e)
+        conn.rollback()
 
 
-# sqlQuery = " INSERT INTO disease (id, name, date, country, cases) VALUE (%s,%s,str_to_date(%s,'%%Y-%%m-%%d'),%s,%s) "
-# value = ('5666666', 'Monkeypox', '2018-01-01', 'China', 5)
-# try:
-#     cur.execute(sqlQuery, value)
-#     conn.commit()
-#     print('数据插入成功！')
-# except pymysql.Error as e:
-#     print("数据插入失败："+e)
-#     conn.rollback()
-#
-#
-# conn.commit()
-# print("success")
-#
-# cur.close()
-# conn.close()
+conn.commit()
+print("success")
+
+cur.close()
+conn.close()
