@@ -8,7 +8,6 @@ conn = pymysql.connect(
     charset='UTF8',
     user='root',
     password='521365zhh',
-    db='diseasedb'
 )
 cur = conn.cursor()
 
