@@ -25,3 +25,8 @@ def board(request):
 def test(request):
     context_dict = {}
     return render(request, 'test.html', context_dict)
+
+
+def undiagnosed(request):
+    context_dict = {}
+    return render(request, 'undiagnosed.html', context_dict)

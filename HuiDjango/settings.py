@@ -84,7 +84,7 @@ DATABASES = {
         'USER': 'root',
         'PASSWORD': '521365zhh',
         'CHARSET': 'UTF8',
-        'NAME': 'disease',
+        'NAME': 'diseasedb',
     }
 }
 
